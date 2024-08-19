@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block title %}
+    Add Restaurant
+{% endblock %}
+
+{% block main %}
+<div class="text-center">
+    <form action="/add_restaurant" method="post" enctype="multipart/form-data">
+        <div id="radio-selector">
+            <div class="mb-3">
+                <input type="radio" class="btn-check" name="restaurant-add" id="instagram_add" autocomplete="off" value="instagram" checked>
+                <label class="btn btn-outline-success" for="instagram_add">Add from Instagram</label>
+
+                <input type="radio" class="btn-check" name="restaurant-add" id="manual_add" autocomplete="off" value="manual">
+                <label class="btn btn-outline-success" for="manual_add">Add Manually</label>
+        
+            </div>
+
+            <div class="input-group mb-3 w-50 mx-auto desc" id="form_instagram">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input autocomplete="off" autofocus class="form-control desc" id="required_instagram" name="restaurant_user" placeholder="Instagram User" type="text" required>
+            </div>
+
+            <div class="mb-3 desc" id="form_manual" style="display:none">
+                <div class="mb-3">
+                    <input class="form-control mx-auto w-50 desc" id="required_manual" autocomplete="off" name="name" placeholder="Restaurant Name" type="text">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control mx-auto w-50" name="address" placeholder="Address" autocomplete="off" type="text">
+                </div>
+                <div class="mb-3">
+                    <input class="form-control mx-auto w-50" name="city" placeholder="City" autocomplete="off" type="text">
+                </div>
+                <div class="input-group mb-3 mx-auto w-50">
+                    <label class="input-group-text" id="upload_profile_pic" for="profile_pic">Upload Profile Picture</label>
+                    <input type="file" accept="image/jpg, image/heic" style="display:none" name="profile_picture" autocomplete="off" class="form-control" id="profile_pic">
+                  </div>
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary" type="submit">Add Restaurant</button>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        $("input[name$='restaurant-add']").click(function(){
+            var val = $(this).val();
+            $("div.desc").hide();
+            $("input.desc").prop('required', false);
+            $("#form_" + val).show();
+            $("#required_" + val).prop('required', true);
+            });
+    });
+</script>
+{% endblock %}

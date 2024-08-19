@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}
+    Add Comment
+{% endblock %}
+
+{% block main %}
+    <div class="text-center">
+        <form action={{ "/entrie/" ~ id ~ "/add_comment" }} method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <textarea rows="4" autocomplete="off" class="form-control data-fields w-75 mx-auto" id="bio" name="comment_text" placeholder="Comment" required></textarea>
+            </div>
+
+            <div class="input-group mb-3 mx-auto w-75">
+                <label class="input-group-text" for="comment_picture">Upload Picture</label>
+                <input type="file" accept="image/jpg, image/heic" style="display:none" name="comment_picture" autocomplete="off" class="form-control" id="comment_picture">
+            </div>
+            <button class="btn btn-primary" type="submit">Add Comment</button>
+        </form>
+    </div>
+{% endblock %}
+        

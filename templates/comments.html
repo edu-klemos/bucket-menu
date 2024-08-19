@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}
+    Comments
+{% endblock %}
+
+{% block main %}
+
+    <div class="mb-5" id="align-items">
+        {% if restaurant_data['profile_pic'] %}
+            <img class="profile_pic" src={{ url_for('static', filename='') + "images/" + restaurant_data["profile_pic"] }} alt="restaurant-image"/>
+        {% endif %}
+            <h2 class="mx-2">{{ restaurant_data['name'] }}</h2>
+    </div>
+
+    <div class="pl-3">
+        <h2 class="text-start fw-bold mb-3">Comments</h2>
+        <a href={{ "/entrie/" ~ id ~ "/add_comment" }} type="button" class="btn btn-primary mb-3">Add Comment</a>
+    </div>
+    
+    {% if comments %} 
+        {% for comment in comments%}
+            {% if comment['comment_image']%}
+                <div class="card mb-3 mx-auto">
+                    <img src={{ url_for('static', filename='') + "images/" + comment["comment_image"] }} class="card-img-top" alt="image comment">
+                    <div class="card-body">
+                        <p class="card-text"><small class="text-body-secondary">{{ comment['date'] }}</small></p>
+                        <p class="card-text">{{ comment['comment'] }}</p>
+                        <form action="/delete_comment/{{ comment['id'] }}" method="post">
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-outline-danger delete-button">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+            <div class="card mb-3 mx-auto">
+                <div class="card-body">
+                    <p class="card-text text-start"><small class="text-body-secondary">{{ comment['date'] }}</small></p>
+                    <p class="card-text">{{ comment['comment'] }}</p>
+                    <form action="/delete_comment/{{ comment['id'] }}" method="post">
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-outline-danger delete-button">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+    
+    {% else %}
+    {% endif %}
+
+    <script>
+        $(".delete-button").click(function(event){
+            var result = confirm("Do you want to delete this restaurant?");
+            if(!result) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+nav {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.form-design {
+    background-color: aliceblue;
+}
+
+.table,
+.table th,
+.table tr,
+.table td {
+    background-color: #F7F9FA !important;
+}
+
+#upload_profile_pic:hover {
+    cursor: pointer;
+}
+
+.card {
+    max-width: 30rem;
+    height: auto;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-bottom: 20px;
+    z-index: 100;
+}
+
+.profile_pic {
+    max-width: 100px;
+    min-width: 50px;
+    max-height: 100px;
+    min-height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+label {
+    text-align: left; 
+}
+
+#align-items {
+    display: flex;
+    align-items: center;
+}
+
+

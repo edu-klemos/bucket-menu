@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}
+    My List
+{% endblock %}
+
+{% block main %}
+    {% if places_not_gone %}
+        <h2 class="text-start fw-bold">My List</h2>
+        <p class="text-start fw-lighter" style="color: gray;"> *places you haven't gone yet</p>
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Address</th>
+                </tr>
+            </thead>
+            {% for place in places_not_gone %}
+                <tr>
+                    <td class="align-middle">
+                        {% if place['profile_pic'] != "-" %}
+                            <img class="profile_pic" src={{ url_for('static', filename='') + "images/" + place["profile_pic"] }} alt="restaurant-image"/>
+                        {% else %}
+                            <img class="profile_pic" width="100" src="https://placehold.co/100/jpg?text=No+Image" alt="no-image">
+                        {% endif %}
+                    </td>
+                    <td class="align-middle">
+                        <a href="/restaurant/{{ place['id'] }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ place['name'] }}</a>
+                    </td>
+                    <td class="align-middle">{{ place['city'] }}</td>
+                    <td class="align-middle">{{ place['address'] }}</td>
+                </tr>
+            {% endfor %}
+
+    {% else %}
+    <p>Click <a href="/add_restaurant" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">here to add a Restaurant</a> and start using the app<p>
+
+    {% endif %}
+ 
+
+{% endblock %}
